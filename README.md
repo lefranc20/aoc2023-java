@@ -7,5 +7,7 @@ Advent of Code 2023 - Java
 	1. [x] - Part1
 	2. [x] - Part2
 2. [ ] Day 2: Cube Conundrum
+	1. [x] - Part1
+	2. [ ] - Part2
 3. [ ] Day 3 - Liberado, não li sobre
 4. [ ] Day 4 - ...

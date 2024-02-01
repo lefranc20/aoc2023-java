@@ -17,7 +17,7 @@ public class D1Pt1 {
 	public static int processaArquivoEntrada(String nomeArquivo) throws IOException {
 		int somaTotal = 0;
 		
-		// O BufferedReader em conjunto com o FileReader previne o nosso leitor de sair caso ele veja uma linha vazia
+		// O BufferedReader em conjunto com o FileReader previne o nosso leitor de sair caso ele veja uma linha vazia (não sendo o fim do arquivo)
 		try (BufferedReader reader = new BufferedReader(new FileReader(nomeArquivo))) {
             String linha;
             while ((linha = reader.readLine()) != null) { // executa linha por linha até chegar no fim do arquivo
