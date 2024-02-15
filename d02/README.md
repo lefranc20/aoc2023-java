@@ -47,7 +47,7 @@ public class Exercise2 {
 		if (foundMatches) {
 			String protocol = matcher.group(1);
 			String domain = matcher.group(2);
-			String path = matcher.group(3);
+			String path = matcher.group(3);	
 
 			System.out.println("Protocol: " + protocol);
 			System.out.println("domain: " + domain);
@@ -74,14 +74,15 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
 - Jogo 4: requer no mínimo 14 vermelho, 3 verdes, e 15 cubos azuis.
 - Jogo 5: mínimo de 6 vermelhos, 3 verdes, e 2 cubos azuis na mochila
 
-O **poder** de um set de cubos é igual ao número de vermelho, verde e azuis (da menor quantidade do jogo possível) multiplicados juntos. O poder mínimo de um set de cubos no primeiro jogo é 48. Nos jogos de 2-5 foram, respectivamente: 12, 1560, 630 e 36. Adicionando esses 5 poderes nos totalizam com a soma de 2286.
+O **poder** de um set de cubos é igual ao número de vermelho, verde e azuis (da menor quantidade do jogo possível) multiplicados juntos. O poder mínimo de um set de cubos no primeiro jogo é 48 (4 vermemelhos * 6 azuis * 2 verdes). Nos jogos de 2-5 foram, respectivamente: 12, 1560, 630 e 36. Adicionando esses 5 poderes nos totalizam com a soma de 2286.
 
 Para cada jogo, encontre o set mínimo de cubos que poderiam estar presentes. Qual a soma do poder desses sets?
 
-Objetivo: ver qual a ***maior*** quantia de cada tipo de cor de cubo, multiplicar os seus valores e armazenar em um vetor **poder**. Feito isso com todos os jogos, fazer um repetidor que armazena a soma desse vetor inteiro.
+Objetivo simplificado: ver qual a ***maior*** quantia de cada tipo de cor de cubo em um jogo, multiplicar os seus valores e armazenar em um vetor **poder**. Feito isso com todos os jogos, fazer um repetidor que armazena a soma de um vetor com todos esses valores inteiros.
  
-Nota: Os jogos NÃO precisam ser ganháveis para o cálculo do poder de cada.
+Nota: Os jogos **NÃO** precisam ser ganháveis para o cálculo do poder de cada. Também não é necessário mostrar a resposta da primeira parte.
  
 ### Resposta(s)
 
 Resposta Incorreta: 12078 (valor demasiado baixo)
+Resposta Correta (no meu input): 71220

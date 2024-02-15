@@ -6,8 +6,8 @@ Advent of Code 2023 - Java
 1. [x] Day 1: Trebuchet?!
 	1. [x] - Part1
 	2. [x] - Part2
-2. [ ] Day 2: Cube Conundrum
+2. [x] Day 2: Cube Conundrum
 	1. [x] - Part1
-	2. [ ] - Part2
-3. [ ] Day 3 - Liberado, não li sobre
+	2. [x] - Part2
+3. [ ] Day 3 - Gear Ratios
 4. [ ] Day 4 - ...

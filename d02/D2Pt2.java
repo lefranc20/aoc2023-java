@@ -1,20 +1,22 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import java.util.Scanner;
+
 import java.util.regex.*;
 
 public class D2Pt2 {
 
     public static void main(String[] args) {
         List<String> gameStrings = readGameStringsFromFile("input.txt");
-
-        int totalGameSum = 0;
-        int totalPowerSum = 0;
+		
+		int setTotal = 0;
+        int jogosTotal = 0;
 
         for (String gameString : gameStrings) {
             List<Map<String, Integer>> setsColorCounts = extractSetsColorCounts(gameString);
@@ -26,26 +28,13 @@ public class D2Pt2 {
                 System.out.println("Set " + (i + 1) + ": " + setsColorCounts.get(i));
             }
 
-            // Check the winning condition for each set
-            boolean isGameWon = checkWinningCondition(setsColorCounts);
-
-            if (isGameWon) {
-                int gameId = extractGameId(gameString);
-                totalGameSum += gameId;
-                System.out.println("Game Won! ID: " + gameId);
-
-                int[] powerArray = calculatePowerArray(setsColorCounts);
-                totalPowerSum += calculateArraySum(powerArray);
-                System.out.println("Power Array: " + Arrays.toString(powerArray));
-            } else {
-                System.out.println("Game Not Won");
-            }
-
-            System.out.println();
+            jogosTotal = jogoPoderResultado(setsColorCounts) + jogosTotal;
+			
+			setTotal = jogoPoderResultado(setsColorCounts);
+			System.out.println("Valor do set: "+setTotal);
         }
 
-        System.out.println("Total Sum of IDs for Won Games: " + totalGameSum);
-        System.out.println("Total Sum of Power Array: " + totalPowerSum);
+        System.out.println("Poder total dos jogos: " + jogosTotal);
     }
 
     private static List<String> readGameStringsFromFile(String filename) {
@@ -96,20 +85,42 @@ public class D2Pt2 {
         return setsColorCounts;
     }
 
-    private static boolean checkWinningCondition(List<Map<String, Integer>> setsColorCounts) {
-        int redThreshold = 12;
+    private static int jogoPoderResultado(List<Map<String, Integer>> setsColorCounts) {
+        /* Deletar
+		int redThreshold = 12;
         int greenThreshold = 13;
         int blueThreshold = 14;
-
-        for (Map<String, Integer> colorCounts : setsColorCounts) {
-            if (colorCounts.getOrDefault("red", 0) > redThreshold ||
-                colorCounts.getOrDefault("green", 0) > greenThreshold ||
-                colorCounts.getOrDefault("blue", 0) > blueThreshold) {
+		
+				
+        for (Map<String, Integer> colorCounts : setsColorCounts) { // apenas checa se alguma cor passou do limite
+            if (colorCounts.getOrDefault("red", 0) > redThreshold || colorCounts.getOrDefault("green", 0) > greenThreshold || colorCounts.getOrDefault("blue", 0) > blueThreshold) {
                 return false;  // Game is not won
             }
         }
-
-        return true;  // Game is won
+		*/
+		
+		int redMaxPrev = 0;
+		int blueMaxPrev = 0;
+		int greenMaxPrev = 0;
+		int total = 0;
+		
+		for (Map<String, Integer> colorCounts : setsColorCounts) {
+			if (colorCounts.getOrDefault("red", 0) > redMaxPrev) {
+				redMaxPrev = colorCounts.getOrDefault("red", 0);
+			}
+			
+			if (colorCounts.getOrDefault("blue", 0) > blueMaxPrev) {
+				blueMaxPrev = colorCounts.getOrDefault("blue", 0);
+			}
+			
+			if (colorCounts.getOrDefault("green", 0) > greenMaxPrev) {
+				greenMaxPrev = colorCounts.getOrDefault("green", 0);
+			}
+		}
+		
+		total = redMaxPrev * blueMaxPrev * greenMaxPrev;
+		
+        return total;  // Sai do método
     }
 
     private static int extractGameId(String gameString) {
@@ -123,31 +134,5 @@ public class D2Pt2 {
         }
 
         return -1; // Return -1 if no match is found
-    }
-
-    private static int[] calculatePowerArray(List<Map<String, Integer>> setsColorCounts) {
-        int[] powerArray = new int[setsColorCounts.size()];
-
-        for (int i = 0; i < setsColorCounts.size(); i++) {
-            Map<String, Integer> colorCounts = setsColorCounts.get(i);
-            int maxRed = colorCounts.getOrDefault("red", 0);
-            int maxGreen = colorCounts.getOrDefault("green", 0);
-            int maxBlue = colorCounts.getOrDefault("blue", 0);
-
-            // Calculate power for each set and store it in the array
-            powerArray[i] = maxRed * maxGreen * maxBlue;
-        }
-
-        return powerArray;
-    }
-
-    private static int calculateArraySum(int[] array) {
-        int sum = 0;
-
-        for (int value : array) {
-            sum += value;
-        }
-
-        return sum;
     }
 }
