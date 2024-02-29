@@ -10,4 +10,6 @@ Advent of Code 2023 - Java
 	1. [x] - Part1
 	2. [x] - Part2
 3. [ ] Day 3 - Gear Ratios
+	1. [x] - Part1
+	2. [ ] - Part2
 4. [ ] Day 4 - ...
